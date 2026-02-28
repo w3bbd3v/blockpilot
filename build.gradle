@@ -1,1 +1,19 @@
-// Root project. Subproject configuration lives in each module's build.gradle.
+subprojects {
+    group = 'com.blockpilot'
+    version = '0.0.1-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    plugins.withId('java') {
+        java {
+            toolchain {
+                languageVersion = JavaLanguageVersion.of(21)
+            }
+        }
+        tasks.named('test') {
+            useJUnitPlatform()
+        }
+    }
+}
