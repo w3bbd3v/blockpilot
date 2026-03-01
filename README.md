@@ -32,33 +32,57 @@ This illustrates a core BlockPilot concept: a **command** is a named, reusable s
 
 ## Architecture
 
-| Module                          | Description                                                              |
-|---------------------------------|--------------------------------------------------------------------------|
-| `blockpilot-server`             | Spring Boot backend — BLOCKCLOCK API client, scheduling engine, REST API |
-| `blockpilot-client` _(planned)_ | Frontend UI for on-demand control and schedule management                |
+| Module              | Description                                                              |
+|---------------------|--------------------------------------------------------------------------|
+| `blockpilot-server` | Spring Boot backend — BLOCKCLOCK API client, scheduling engine, REST API |
+| `blockpilot-client` | Vue 3 + TypeScript frontend — on-demand control and schedule management  |
 
 ## Requirements
 
 - Java 21
+- Node.js 24 LTS (auto-downloaded by Gradle if needed)
 - A BLOCKCLOCK mini on the same LAN
 - Gradle (wrapper included — use `./gradlew`)
 
 ## Getting started
 
+**1. Configure your device** in `blockpilot-server/src/main/resources/application.properties`:
+
+```properties
+blockclock.base-url=http://<your-device-ip>
+blockclock.password=<your-password>
+```
+
+**2. Start the server:**
+
 ```bash
 ./gradlew :blockpilot-server:bootRun
 ```
 
+**3. Start the UI** (in a separate terminal):
+
+```bash
+cd blockpilot-client && npm install && npm run dev
+```
+
+Then open **http://localhost:5173**. The UI proxies all `/api` calls to the server on port 8080.
+
 ## Development
 
-Build and test all modules from the repo root:
+Build all modules:
 
 ```bash
 ./gradlew build
 ```
 
-Run server tests only:
+Run server unit tests:
 
 ```bash
 ./gradlew :blockpilot-server:test
+```
+
+Run integration tests against the real device (requires device to be reachable):
+
+```bash
+./gradlew :blockpilot-server:integrationTest
 ```
