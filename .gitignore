@@ -35,3 +35,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Client ###
+blockpilot-client/node_modules/
+blockpilot-client/dist/
+blockpilot-client/.vite/

@@ -1,0 +1,24 @@
+plugins {
+    id 'base'
+    id 'com.github.node-gradle.node' version '7.1.0'
+}
+
+node {
+    version = '24.14.0'
+    download = true
+}
+
+tasks.register('dev', NpmTask) {
+    description = 'Start Vite dev server'
+    args = ['run', 'dev']
+    dependsOn npmInstall
+}
+
+tasks.register('npmBuild', NpmTask) {
+    args = ['run', 'build']
+    dependsOn npmInstall
+}
+
+tasks.named('build') {
+    dependsOn 'npmBuild'
+}
