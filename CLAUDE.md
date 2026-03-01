@@ -40,3 +40,8 @@ Follow Clean Code practices. Only comment complex code — no obvious or redunda
 ### Package structure
 
 `com.blockpilot.server` — root package for the server module.
+
+### BlockClock references
+
+Use BlockClock's API documentation, found at: https://blockclockmini.com/api.
+Use BlockCLock's product page for more information, found at: https://blockclockmini.com.
