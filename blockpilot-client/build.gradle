@@ -22,3 +22,13 @@ tasks.register('npmBuild', NpmTask) {
 tasks.named('build') {
     dependsOn 'npmBuild'
 }
+
+tasks.register('test', NpmTask) {
+    description = 'Run Vitest unit tests'
+    args = ['test', '--', '--run']
+    dependsOn npmInstall
+}
+
+tasks.named('check') {
+    dependsOn 'test'
+}
